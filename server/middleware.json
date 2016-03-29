@@ -1,0 +1,74 @@
+{
+  "initial:before": {
+    "loopback#favicon": {
+      "params": "$!../client/favicon.ico"
+    },
+    "loopback#static": {
+      "params": "$!../client"
+    }
+  },
+  "initial": {
+    "compression": {},
+    "cors": {
+      "params": {
+        "origin": true,
+        "credentials": true,
+        "maxAge": 86400
+      }
+    }
+  },
+  "session:before": {
+    "./middleware/cookie.js": {},
+    "./middleware/session.js": {}
+  },
+  "session": {
+    "./middleware/multipart.js": {}
+  },
+  "auth": {
+    "loopback#context": {},
+    "./middleware/auth.js": {
+      "name": "auth",
+      "params": {
+        "ignore": [
+          "/api/Users/login",
+          "/api/AuthServers/login",
+          "/api/AuthServers/sign",
+          "/api/AuthServers/info",
+          "/api/AuthServers/logout",
+          "/api/AuthServers/access",
+          "/explorer/",
+          "/explorer",
+          "/dist/",
+          "/login",
+          "/sign",
+          "/auth",
+          "/cdn.amazeui.org/"
+        ]
+      }
+    }
+  },
+  "auth:after": {
+  },
+  "parse": {
+  },
+  "routes:before": {
+  },
+  "routes": {
+    "./middleware/rest.js": {
+      "paths": [
+        "${restApiRoot}"
+      ]
+    }
+  },
+  "routes:after": {
+  },
+  "files": {
+  },
+  "final": {
+    "loopback#urlNotFound": {}
+  },
+  "final:after": {
+    "loopback#errorHandler": {
+    }
+  }
+}

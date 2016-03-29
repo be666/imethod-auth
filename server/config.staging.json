@@ -1,0 +1,45 @@
+{
+  "appName": "auth",
+  "siteUrl": "http://123.56.156.176:3001",
+  "restApiRoot": "/api",
+  "host": "123.56.156.176",
+  "port": 3001,
+  "fileUpload": {
+    "tmp": "./tmp",
+    "dist": "./upload"
+  },
+  "authServer": {
+    "serverUrl": "http://0.0.0.0:3001",
+    "userInfo": "/api/AuthServers/info",
+    "userAppAccess": "/api/AuthServers/access",
+    "login": "/login",
+    "logout": "/api/AuthServers/logout"
+  },
+  "authClient": {
+    "appToken": "75df793c7c2545cd9720028c8ef54eee"
+  },
+  "proxyRule": {
+  },
+  "remoting": {
+    "context": {
+      "enableHttpContext": false
+    },
+    "rest": {
+      "normalizeHttpPath": false,
+      "xml": false
+    },
+    "json": {
+      "strict": false,
+      "limit": "100kb"
+    },
+    "urlencoded": {
+      "extended": true,
+      "limit": "100kb"
+    },
+    "cors": false,
+    "errorHandler": {
+      "disableStackTrace": false
+    }
+  },
+  "legacyExplorer": false
+}

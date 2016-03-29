@@ -1,0 +1,56 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "./models",
+      "../app/auth/models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "./mixins",
+      "../auth/mixins"
+    ]
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "AuthClient": {
+    "dataSource": "db",
+    "public": true
+  },
+  "AuthUser": {
+    "dataSource": "user",
+    "public": true
+  },
+  "AuthApp": {
+    "dataSource": "auth",
+    "public": true
+  },
+  "AuthAppUser": {
+    "dataSource": "auth",
+    "public": true
+  },
+  "AuthGroup": {
+    "dataSource": "auth",
+    "public": true
+  },
+  "AuthGroupUser": {
+    "dataSource": "auth",
+    "public": true
+  },
+  "AuthUserToken": {
+    "dataSource": "token",
+    "public": false
+  },
+  "AuthServer": {
+    "dataSource": "db",
+    "public": true
+  }
+}

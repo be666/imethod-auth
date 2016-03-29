@@ -1,0 +1,71 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "user": {
+    "name": "user",
+    "connector": "memory",
+    "file": "memory/user.json"
+  },
+  "token": {
+    "name": "token",
+    "connector": "memory",
+    "file": "memory/token.json"
+  },
+  "code": {
+    "name": "code",
+    "connector": "memory",
+    "file": "memory/code.json"
+  },
+  "auth": {
+    "name": "auth",
+    "connector": "memory",
+    "file": "memory/auth.json"
+  },
+  "sys": {
+    "name": "sys",
+    "connector": "memory",
+    "file": "memory/sys.json"
+  },
+  "record": {
+    "name": "record",
+    "connector": "memory",
+    "file": "memory/record.json"
+  },
+  "tenant": {
+    "name": "tenant",
+    "connector": "memory",
+    "file": "memory/tenant.json"
+  },
+  "pay": {
+    "name": "pay",
+    "connector": "memory",
+    "file": "memory/pay.json"
+  },
+  "good": {
+    "name": "good",
+    "connector": "memory",
+    "file": "memory/good.json"
+  },
+  "blank": {
+    "name": "blank",
+    "connector": "memory",
+    "file": "memory/blank.json"
+  },
+  "sale": {
+    "name": "sale",
+    "connector": "memory",
+    "file": "memory/sale.json"
+  },
+  "qrcode": {
+    "name": "qrcode",
+    "connector": "memory",
+    "file": "memory/qrcode.json"
+  },
+  "push": {
+    "name": "push",
+    "connector": "memory",
+    "file": "memory/push.json"
+  }
+}
