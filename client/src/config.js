@@ -1,6 +1,6 @@
 module.exports = {
-  "siteUrl": "/auth",
-  "apiUrl": "/auth/api",
+  "siteUrl": "",
+  "apiUrl": "/api",
   "uploadUrl": "/fileUpload",
   "siteName": "爱支付",
   "auth": {

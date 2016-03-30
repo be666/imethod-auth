@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "name": "node-framework",
+      "name": "node_auth",
       "script": "server/server.js",
       "node_args" : "--harmony",
       "watch": true,

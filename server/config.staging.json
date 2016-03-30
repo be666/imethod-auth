@@ -1,6 +1,6 @@
 {
   "appName": "auth",
-  "siteUrl": "http://123.56.156.176:3001",
+  "siteUrl": "http://123.56.156.176",
   "restApiRoot": "/api",
   "host": "123.56.156.176",
   "port": 3001,
@@ -9,7 +9,7 @@
     "dist": "./upload"
   },
   "authServer": {
-    "serverUrl": "http://0.0.0.0:3001",
+    "serverUrl": "http://123.56.156.176",
     "userInfo": "/api/AuthServers/info",
     "userAppAccess": "/api/AuthServers/access",
     "login": "/login",
