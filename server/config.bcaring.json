@@ -1,0 +1,12 @@
+{
+  "siteUrl": "http://www.syngenvan.com",
+  "port": 3000,
+  "Avatar": {
+    "path": "/opt/imethod-auth/avatar/",
+    "publicPath": "/avatar/"
+  },
+  "fileUpload": {
+    "tmp": "/opt/imethod-auth/tmp",
+    "dist": "/opt/imethod-auth/upload"
+  }
+}

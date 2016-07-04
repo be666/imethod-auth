@@ -1,18 +1,37 @@
+'use strict';
 var loopback = require('loopback');
-var path = require('path');
 var boot = require('loopback-boot');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var wxToken = require('./middleware/wxtoken.js');
 var app = module.exports = loopback();
-
+// configure body parser
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser('secret'));
 app.use(loopback.context());
-
-app.use(function saveHostToContext(req, res, next) {
-  loopback.getCurrentContext();
-  next();
+app.use(loopback.token());
+app.use(wxToken());
+app.use(function setCurrentUser(req, res, next) {
+  if (!req.accessToken) {
+    return next();
+  }
+  app.models.user.findById(req.accessToken.userId, function(err, user) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return next(new Error('No user with this access token was found.'));
+    }
+    var loopbackContext = loopback.getCurrentContext();
+    if (loopbackContext) {
+      loopbackContext.set('currentUser', user);
+    }
+    next();
+  });
 });
-
-app.start = function () {
+app.start = function() {
   // start the web server
-  return app.listen(function () {
+  return app.listen(function() {
     app.emit('started');
     var baseUrl = app.get('url').replace(/\/$/, '');
     console.log('Web server listening at: %s', baseUrl);
@@ -22,17 +41,11 @@ app.start = function () {
     }
   });
 };
-
-
 // Bootstrap the application, configure models, datasources and middleware.
 // Sub-apps like REST API are mounted via boot scripts.
-boot(app, __dirname, function (err) {
+boot(app, __dirname, function(err) {
   if (err) throw err;
-
   // start the server if `$ node server.js`
   if (require.main === module)
     app.start();
-
 });
-
-

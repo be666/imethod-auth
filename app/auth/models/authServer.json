@@ -11,5 +11,8 @@
   "relations": {
   },
   "acls": [],
-  "methods": {}
+  "methods": {},
+  "mixins": {
+    "Stamp": {}
+  }
 }

@@ -1,101 +1,68 @@
 {
   "name": "AuthUser",
-  "base": "Entity",
+  "base": "User",
   "idInjection": true,
-  "options": {
-    "validateUpsert": true
-  },
   "properties": {
-    "loginName": {
-      "type": "String",
-      "required": false,
-      "length": 20,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "realName": {
-      "type": "String",
-      "required": false,
-      "length": 20,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "userName": {
-      "type": "String",
-      "required": false,
-      "length": 20,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "pwd": {
-      "type": "String",
-      "required": false,
-      "length": 100,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "passWord": {
-      "type": "String",
-      "required": false,
-      "length": 100,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
     "email": {
+      "type": "string"
+    },
+    "mobile": {
       "type": "String",
       "required": false,
-      "length": 45,
+      "length": 100,
       "precision": null,
       "scale": null,
       "_selectable": true
     },
-    "telephone": {
-      "type": "String",
-      "required": false,
-      "length": 20,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "address": {
-      "type": "String",
-      "required": false,
-      "length": 256,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "sex": {
-      "type": "String",
-      "required": false,
-      "length": 1,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "birthday": {
-      "type": "String",
-      "required": false,
-      "length": 45,
-      "precision": null,
-      "scale": null,
-      "_selectable": true
-    },
-    "signAppId": {
+    "userType": {
       "type": "number",
       "required": false,
-      "length": 10,
+      "length": 2,
+      "precision": null,
+      "scale": null,
+      "_selectable": true
+    },
+    "openId": {
+      "type": "string",
+      "required": false,
+      "length": 100,
       "precision": null,
       "scale": null,
       "_selectable": true
     }
   },
-  "validations": [],
+  "options": {
+    "caseSensitiveEmail": false
+  },
+  "validations": [
+    {
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "accessType": "*",
+      "permission": "ALLOW"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "accessType": "EXECUTE",
+      "permission": "ALLOW",
+      "property": "info"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "accessType": "EXECUTE",
+      "permission": "ALLOW",
+      "property": "webLogin"
+    },
+    {
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "accessType": "EXECUTE",
+      "permission": "ALLOW",
+      "property": "webSign"
+    }
+  ],
   "relations": {
     "userApp": {
       "type": "hasMany",
@@ -109,5 +76,8 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {},
+  "mixins": {
+    "Stamp": {}
+  }
 }

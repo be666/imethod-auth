@@ -1,6 +1,6 @@
 {
   "name": "AuthGroup",
-  "base": "Entity",
+  "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
@@ -53,5 +53,8 @@
     }
   },
   "acls": [],
-  "methods": {}
+  "methods": {},
+  "mixins": {
+    "Stamp": {}
+  }
 }

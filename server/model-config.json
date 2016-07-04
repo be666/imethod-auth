@@ -13,13 +13,41 @@
       "../auth/mixins"
     ]
   },
+  "AccessToken": {
+    "dataSource": "sys",
+    "public": false
+  },
   "ACL": {
-    "dataSource": "db",
+    "dataSource": "sys",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "sys",
     "public": false
   },
   "Role": {
-    "dataSource": "db",
+    "dataSource": "sys",
     "public": false
+  },
+  "Region": {
+    "dataSource": "sys",
+    "public": true
+  },
+  "user": {
+    "dataSource": "auth",
+    "public": true
+  },
+  "UserInfo": {
+    "dataSource": "auth",
+    "public": true
+  },
+  "UserRule": {
+    "dataSource": "auth",
+    "public": true
+  },
+  "Menu": {
+    "dataSource": "auth",
+    "public": true
   },
   "AuthClient": {
     "dataSource": "db",
