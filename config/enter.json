@@ -1,0 +1,38 @@
+{
+  "auth": [
+    {
+      "home": {
+        "js": "src/main.js",
+        "template": "templates/default.ejs",
+        "title": "",
+        "keywords": "",
+        "description": ""
+      }
+    },
+    { "console": {
+        "js": "src/admin.js",
+        "template": "templates/default.ejs",
+        "title": "",
+        "keywords": "",
+        "description": ""
+      }
+    },
+    {
+      "login": {
+        "js": "src/auth-login.js",
+        "template": "templates/default.ejs",
+        "title": "",
+        "keywords": "",
+        "description": ""
+      }
+    },
+    { "sign": {
+        "js": "src/auth-sign.js",
+        "template": "templates/default.ejs",
+        "title": "",
+        "keywords": "",
+        "description": ""
+      }
+    }
+  ]
+}
