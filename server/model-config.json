@@ -3,81 +3,45 @@
     "sources": [
       "loopback/common/models",
       "loopback/server/models",
-      "./models",
-      "../app/auth/models"
+      "../common/models",
+      "./models"
     ],
     "mixins": [
       "loopback/common/mixins",
       "loopback/server/mixins",
-      "./mixins",
-      "../auth/mixins"
+      "../common/mixins",
+      "./mixins"
     ]
   },
   "AccessToken": {
     "dataSource": "sys",
     "public": false
   },
-  "ACL": {
+  "accessToken": {
     "dataSource": "sys",
+    "public": true
+  },
+  "ACL": {
+    "dataSource": "db",
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "sys",
+    "dataSource": "db",
     "public": false
   },
   "Role": {
-    "dataSource": "sys",
+    "dataSource": "db",
     "public": false
   },
-  "Region": {
-    "dataSource": "sys",
-    "public": true
-  },
-  "user": {
-    "dataSource": "auth",
-    "public": true
-  },
-  "UserInfo": {
-    "dataSource": "auth",
-    "public": true
-  },
-  "UserRule": {
-    "dataSource": "auth",
-    "public": true
-  },
-  "Menu": {
-    "dataSource": "auth",
-    "public": true
-  },
-  "AuthClient": {
+  "AuthUser": {
     "dataSource": "db",
     "public": true
   },
-  "AuthUser": {
-    "dataSource": "user",
-    "public": true
-  },
   "AuthApp": {
-    "dataSource": "auth",
+    "dataSource": "db",
     "public": true
   },
   "AuthAppUser": {
-    "dataSource": "auth",
-    "public": true
-  },
-  "AuthGroup": {
-    "dataSource": "auth",
-    "public": true
-  },
-  "AuthGroupUser": {
-    "dataSource": "auth",
-    "public": true
-  },
-  "AuthUserToken": {
-    "dataSource": "token",
-    "public": false
-  },
-  "AuthServer": {
     "dataSource": "db",
     "public": true
   }

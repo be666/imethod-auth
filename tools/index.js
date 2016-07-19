@@ -197,75 +197,12 @@ pub.md5 = function (content) {
   md5.update(content);
   return md5.digest('hex');
 };
-pub.proxy = function (distUrl, req, res, cacheFile) {
-  var backTimeoutTTL = 20000;
-  var distObj = url.parse(distUrl);
-  req.headers.host = distObj.host;
-  var options = {
-    host: distObj.hostname,
-    port: distObj.port,
-    headers: req.headers,
-    path: distObj.path,
-    agent: false,
-    method: req.method
-  };
-  var requestTimer;
-  var httpProxy = http.request(options, function (response) {
-    if (requestTimer) clearTimeout(request_timer);
-    response.pipe(res);
-    //cacheFile && response.pipe(fs.createWriteStream(cacheFile))
-  });
-  httpProxy.on('error', function (e) {
-    res.end('error happend :' + req.url);
-  });
-  requestTimer = setTimeout(function () {
-    console.log('request timeout [%s] %s', host, req.url);
-    httpProxy.abort();
-    res.end('request timeout :' + req.url);
-  }, backTimeoutTTL);
-  return httpProxy;
-};
-pub.logVisit = function (url) {
-  var VisitLog = pub.getModelByName('VisitLog');
-  VisitLog.log(url);
-};
-pub.optionLog = function (action, req) {
-  var OptionLog = pub.getModelByName('OptionLog');
-  OptionLog.option(action, req);
-};
-pub.logger = {
-  debug: console.log, info: console.log, warn: console.log
-};
+
 pub.getError = function (errMsg, status) {
   var error = new Error(errMsg);
   error.status = status || 502;
   delete error.stack;
   return error;
-};
-pub.httpRequest = function (distUrl, method, cb) {
-  var distObj = url.parse(distUrl);
-  var req = http.request({
-    hostname: distObj.hostname, port: distObj.port, path: distObj.path, agent: false, method: method || 'get'
-  }, (res) => {
-    var dataCache = [];
-    var dataLength = 0;
-    res.setEncoding('utf8');
-    if (res.statusCode != 200) {
-      cb(pub.getError('无法连接到服务器'));
-    }
-    res.on('data', (chunk) => {
-      dataCache.push(chunk);
-      dataLength += chunk.length;
-    });
-    res.on('end', () => {
-      cb(null, dataCache.join(''));
-    });
-  });
-  req.on('error', (e) => {
-    pub.logger.debug(e);
-    cb(e);
-  });
-  req.end();
 };
 pub.getEUID = function (len) {
   var chars = 'QWERTYUIOPLKJHGFDSAZXCVBNM123456789qazwsxedcrfvtgbyhnujmikolp'.split('');
@@ -278,14 +215,7 @@ pub.getEUID = function (len) {
 pub.getErrorCodeMsg = function (errCode) {
   return errorCodes[errCode + ''] || '';
 };
-pub.cardSign = function (cardIndex) {
-  return cardIndex.substring(10, 11);
-};
-pub.cardCheck = function (cardNum) {
-  let cardIndex = cardNum.substring(0, 15);
-  let cardSignPoi = cardNum.substring(15, 16);
-  return cardSign(cardIndex) == cardSignPoi;
-};
+
 function createPromiseCallback() {
   var cb;
   if (!global.Promise) {

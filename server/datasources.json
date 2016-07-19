@@ -1,16 +1,12 @@
 {
   "db": {
     "name": "db",
-    "connector": "memory"
+    "connector": "memory",
+    "file": "server/resource/memory/db.json"
   },
   "sys": {
     "name": "sys",
     "connector": "memory",
     "file": "server/resource/memory/sys.json"
-  },
-  "auth": {
-    "name": "auth",
-    "connector": "memory",
-    "file": "server/resource/memory/auth.json"
   }
 }

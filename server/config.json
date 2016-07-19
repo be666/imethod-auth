@@ -2,23 +2,9 @@
   "restApiRoot": "/api",
   "host": "0.0.0.0",
   "port": 3000,
-  "Avatar": {
-    "path": "./client/avatar/",
-    "publicPath": "/avatar/"
-  },
-  "authServer": {
-    "serverUrl": "http://0.0.0.0:3000",
-    "userInfo": "/api/AuthServers/info",
-    "userAppAccess": "/api/AuthServers/access",
-    "login": "/login",
-    "logout": "/api/AuthServers/logout"
-  },
-  "authClient": {
-    "appToken": "75df793c7c2545cd9720028c8ef54eee"
-  },
-  "fileUpload": {
-    "tmp": "./client/tmp",
-    "dist": "./client/upload"
+  "auth": {
+    "appId": "",
+    "clientKey": ""
   },
   "remoting": {
     "context": {

@@ -18,12 +18,5 @@ coverage
 node_modules
 npm-debug.log
 
-bower_components
-tmp
-upload
-*.mwb.bak
 
-memory/*.json
-
-proxy
-client/dist
+*.bcaring.json

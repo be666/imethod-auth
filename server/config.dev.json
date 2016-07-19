@@ -1,0 +1,9 @@
+{
+  "restApiRoot": "/api",
+  "host": "auth.dev.bcaring.cn",
+  "port": 11060,
+  "auth": {
+    "appId": "4534c10ab113969ff11e5530b2fdc71a",
+    "clientKey": "a1d93a58cd53fc2440e135b0001eb3cc49050d31"
+  }
+}
