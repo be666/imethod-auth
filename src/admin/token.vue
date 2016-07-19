@@ -1,16 +1,12 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
-  <div class="am-panel am-panel-default">
-    <div class="am-panel-hd">
-      <h3 class="am-panel-title">
-        用户登陆token
-      </h3>
+  <div class="i-panel">
+    <div class="i-panel-header">
+      用户登陆token
     </div>
-    <div class="am-panel-bd">
-      <div class="am-panel-bd">
-        <i_table
-          v-ref:table
-        ></i_table>
-      </div>
+    <div class="i-panel-body">
+      <i_table
+        v-ref:table
+      ></i_table>
     </div>
   </div>
 </template>

@@ -2,7 +2,7 @@ module.exports = {
   "siteUrl": "",
   "apiUrl": "/api",
   "uploadUrl": "/fileUpload",
-  "siteName": "爱支付",
+  "siteName": "统一身份认证",
   "auth": {
     "ignoreAll": false,
     "ignore": [

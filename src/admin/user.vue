@@ -1,24 +1,19 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
-  <div class="am-panel am-panel-default">
-    <div class="am-panel-hd">
-      <h3 class="am-panel-title">
-        用户列表
-      </h3>
+  <div class="i-panel">
+    <div class="i-panel-header">
+      用户列表
     </div>
-    <div class="am-panel-bd">
-      <div class="am-btn-toolbar">
-        <div class="am-btn-group">
-          <div class="am-btn am-btn-default" v-on:click="link('user-add')">
-            新增
-          </div>
-        </div>
-      </div>
-      <div class="am-panel-bd">
-        <i_table
-          v-on:table-click="optionInfo"
-          v-ref:table
-        ></i_table>
-      </div>
+    <div class="i-btn-g">
+      <button
+        v-on:click="link('user-add')">
+        新增
+      </button>
+    </div>
+    <div class="i-panel-body">
+      <i_table
+        v-on:table-click="optionInfo"
+        v-ref:table
+      ></i_table>
     </div>
   </div>
 </template>
@@ -104,7 +99,7 @@
         text: "电话"
       }];
       $this.$refs.table.optionList = [{
-        className: 'am-btn-sm',
+        className: 'i-btn-sm',
         id: "state",
         render: function (el, index) {
           if (el.state == 1) {

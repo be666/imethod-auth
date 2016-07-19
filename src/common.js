@@ -1,16 +1,13 @@
 'use strict';
 let Vue = require('vue');
 let VueResource = require('vue-resource');
-let VueViewComponents = require('vue-view-components').default;
+let VueViewComponents = require('vue-view-components');
+
 Vue.config.debug = true;
-console.log(VueViewComponents());
 Vue.use(function (vue) {
   vue.prototype.$tools = require('./tools');
   vue.prototype.$auth = require('./auth');
   vue.prototype.$config = require('./config');
-  vue.prototype.$module = {
-    moduleName: ''
-  };
 });
 
 

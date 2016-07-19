@@ -22,6 +22,14 @@ let Api = {
   '/explorer': {
     target: proxyTarget,
     changeOrigin: true
+  },
+  '/authLogin': {
+    target: proxyTarget,
+    changeOrigin: true
+  },
+  '/logout': {
+    target: proxyTarget,
+    changeOrigin: true
   }
 };
 module.exports = {

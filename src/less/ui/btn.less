@@ -1,0 +1,36 @@
+button {
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: @fs-md;
+  line-height: @hl-md;
+  background: @color-pri;
+  color: @color-bg;
+  &:hover {
+    background: @color-pri-hover;
+    color: @color-bg;
+  }
+
+  &:visited, &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+.i-btn-g {
+  display: inline-flex;
+  button {
+    border-left: 1px solid transparent;
+    border-radius: 0;
+  }
+
+  button:first-child {
+    border-bottom-left-radius: @border-radius;
+    border-top-left-radius: @border-radius;
+  }
+  button:last-child {
+    border-bottom-right-radius: @border-radius;
+    border-top-right-radius: @border-radius;
+  }
+}

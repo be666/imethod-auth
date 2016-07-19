@@ -1,0 +1,36 @@
+form {
+  input {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    border: 1px solid @color-border;
+  }
+  label {
+    box-sizing: border-box;
+    text-indent: @text-indent;
+    &.i-text-al-r {
+      padding-right: @text-indent;
+    }
+  }
+
+  .i-row {
+    padding: @pd-sm 0;
+  }
+
+  .i-checkbox, .i-radio {
+    display: inline-flex;
+  }
+
+  fieldset {
+    padding: 0;
+    margin: 0;
+    border: none;
+    legend {
+      padding: 0 @pd-md;
+      width: 100%;
+      border-bottom: 1px solid @color-border;
+      margin-bottom: @hl-md;
+    }
+  }
+}
+

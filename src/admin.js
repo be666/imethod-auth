@@ -1,17 +1,9 @@
 let {Vue} = require("./common");
 let VueRouter = require('vue-router');
-let {auth}=require('./config');
-let {inArray} = require('./tools');
-let {valid} = require('./auth');
-
-
-Vue.use(function (vue) {
-  vue.prototype.$module = {
-    moduleName: 'admin'
-  };
-});
-
 //main
+
+Vue.use(VueRouter);
+
 let App = Vue.extend({
   events: {
     link: function (pathName, params) {
@@ -28,7 +20,6 @@ router.map({
   '/': {
     name: "root",
     component: require("./layout/root.vue"),
-    admin: true,
     subRoutes: {
       "/": {
         component: require("./layout/app.vue"),
@@ -84,12 +75,11 @@ router.redirect({
 });
 
 router.beforeEach(function (transition) {
-  if (auth.ignoreAll) {
-    transition.next()
-  } else if (inArray(auth.ignore, transition.to.path)) {
+  let $this = transition.to.router.app;
+  if ($this.$tools.inArray($this.$auth.ignore, transition.to.path)) {
     transition.next()
   } else {
-    valid(transition.to.router.app, function () {
+    $this.$auth.valid($this, function () {
       transition.next();
     }, function () {
       window.location.href = "/";
@@ -98,6 +88,3 @@ router.beforeEach(function (transition) {
 });
 
 router.start(App, 'body');
-
-
-

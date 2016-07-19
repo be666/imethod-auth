@@ -1,28 +1,21 @@
 <template>
-  <component :is="currentView" v-bind:user-info="userInfo"></component>
-  <section>
+  <i_header></i_header>
+  <section class="i-scope i-section">
     <router-view></router-view>
   </section>
+  <i_footer></i_footer>
 </template>
 <script>
   export default  {
     components: {
-      home: require("./header_portal.vue"),
-      admin: require("./header_admin.vue")
+      i_header: require("./header.vue"),
+      i_footer: require("./footer.vue")
     },
     data () {
-      let currentView = 'home';
-      if (this.$module.moduleName == 'admin') {
-        currentView = 'admin';
-      }
-      return {
-        userInfo: this.userInfo,
-        currentView: currentView
-      }
+      return {}
     },
     route: {
       data (transition) {
-        this.userInfo = this.$tools.getUserInfo();
       }
     }
   }

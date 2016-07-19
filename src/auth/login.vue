@@ -1,30 +1,27 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
   <i_header></i_header>
   <section>
-    <div class='am-container'>
-      <div class='am-u-md-6 am-u-sm-centered'>
+    <div class='i-row i-scope i-al-c'>
+      <div class='i-col-6'>
         <h1>登陆</h1>
-        <form class="am-form"
-              data-am-validator="true"
-              accept-charset="UTF-8"
-              v-on:submit.prevent="login"
+        <form
+          accept-charset="UTF-8"
+          v-on:submit.prevent="login"
         >
 
-          <div class='am-form-group'>
-            <label for="userName">账号</label>
-            <input class="am-radius" required="required" type="text" v-model="username" id="userName"/>
+          <div class='i-row'>
+            <label class="i-col-4">账号</label>
+            <input class="i-col-8" required="required" type="text" v-model="username" id="userName"/>
           </div>
-          <div class='am-form-group'>
-            <label for="passWord">密码</label>
-            <input class="am-radius" required="required" type="password" v-model="password" id="passWord"/>
+          <div class='i-row'>
+            <label class="i-col-4">密码</label>
+            <input class="i-col-8" required="required" type="password" v-model="password" id="passWord"/>
           </div>
-          <div class='am-form-group'>
-            <input type="submit" name="commit" value="登陆"
-                   class="am-btn am-btn-block am-btn-primary am-radius"/>
+          <div class='i-row'>
+            <button type="submit" class="i-col-fill" name="commit"> 登陆</button>
           </div>
-          <div class='am-form-group'>
-            <input type="button" name="sign" value="注册" v-on:click="sign"
-                   class="am-btn am-btn-block am-btn-primary am-radius"/>
+          <div class='i-row'>
+            <button type="button" class="i-col-fill" name="sign" v-on:click="sign">注册</button>
           </div>
         </form>
       </div>
@@ -42,9 +39,7 @@
       return {
         username: null,
         password: null,
-        autoLogin: null,
-        app_token: null,
-        url: null
+        appId: null
       }
     },
     components: {
@@ -61,19 +56,23 @@
         s = s.split("=");
         query[s[0]] = decodeURIComponent(s[1]);
       }
-      this.app_token = query.app_token || '';
-      this.url = query.url || ''
+      this.appId = query.appId || null
     },
     methods: {
       login () {
         let $this = this;
-        this.$http.post(this.$tools.resolveUrl("/AuthServers/login"), {
-          username: this.username,
+        let query = {
+          loginName: this.username,
           password: this.password
-        }, function (data, status, request) {
+        };
+        if (this.appId) {
+          query.appId = this.appId;
+        }
+        this.$http.post(this.$tools.resolveUrl("/AuthAppUsers/authLogin"), query, function (data, status, request) {
           let tokenInfo = data.tokenInfo;
-          let authApp = data.authApp;
-          window.location.href = this.$tools.resolveHost(this.$config.siteUrl) + '/authLogin?tokenInfo=' + tokenInfo + '&url=' + encodeURIComponent(this.url);
+          let callbackUrls = data.callbackUrls;
+          console.log(callbackUrls);
+          window.location.href = callbackUrls + "?access_token=" + tokenInfo;
         }).error(function (data, status, request) {
           $this.$dialog.error(data.error.message);
         })

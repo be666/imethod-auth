@@ -1,30 +1,24 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
-  <div class="am-panel am-panel-default">
-    <div class="am-panel-hd">
-      <h3 class="am-panel-title">
-        应用分组列表
-      </h3>
+  <div class="i-panel">
+    <div class="i-panel-header">
+      应用分组列表
     </div>
-    <div class="am-panel-bd">
-      <div class="am-btn-toolbar">
-        <div class="am-btn-group">
-          <div class="am-btn am-btn-default"
-               v-on:click="groupAdd()">
-            新增
-          </div>
-          <div class="am-btn am-btn-default"
-               v-bind:class="[$refs.table.checkbox.length==1?'':'am-disabled']"
-               v-on:click="groupUserCtl()">
-            用户管理
-          </div>
-        </div>
-      </div>
-      <div class="am-panel-bd">
-        <i_table
-          v-on:table-click="optionInfo"
-          v-ref:table
-        ></i_table>
-      </div>
+    <div class="i-btn-g">
+      <button
+        v-on:click="groupAdd()">
+        新增
+      </button>
+      <button
+        v-bind:class="[$refs.table.checkbox.length==1?'':'am-disabled']"
+        v-on:click="groupUserCtl()">
+        用户管理
+      </button>
+    </div>
+    <div class="i-panel-body">
+      <i_table
+        v-on:table-click="optionInfo"
+        v-ref:table
+      ></i_table>
     </div>
   </div>
 </template>
@@ -118,7 +112,7 @@
         }
       }];
       $this.$refs.table.optionList = [{
-        className: 'am-btn-sm',
+        className: 'i-btn-sm',
         id: "state",
         render: function (el, index) {
           if (el.state == 1) {
