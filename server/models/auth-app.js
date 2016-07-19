@@ -35,7 +35,7 @@ module.exports = function (AuthApp) {
 
   AuthApp.remoteMethod("oauthCallback", {
     accepts: [
-      {arg: 'tokenInfo', type: 'string'},
+      {arg: 'access_token', type: 'string',required:true},
       {arg: 'res', type: 'object', 'http': {source: 'res'}}
     ],
     http: {path: "/oauthCallback", verb: "get"}

@@ -21,9 +21,7 @@ app.use(function setCurrentUser(req, res, next) {
     }
     var loopbackContext = loopback.getCurrentContext();
     if (loopbackContext) {
-      console.log('1111')
       loopbackContext.set('currentUser', user);
-      console.log(loopbackContext.get('currentUser'));
     }
     next();
   });

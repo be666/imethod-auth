@@ -73,7 +73,6 @@ module.exports = function (AuthAppUser) {
     if (!appId) {
       appId = tools.getArg('auth').appId;
     }
-    console.log(tools.getArg('auth'));
     AuthApp.findById(appId, function (err, authApp) {
       if (err || !authApp) {
         return next(err ||tools.getError('无效的应用信息'));
