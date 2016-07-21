@@ -19,7 +19,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "app": {
+      "type": "belongsTo",
+      "model": "AuthApp",
+      "foreignKey": "appId"
+    },
+    "user": {
+      "type": "belongsTo",
+      "model": "AuthUser",
+      "foreignKey": "userId"
+    }
+  },
   "acls": [
     {
       "accessType": "*",

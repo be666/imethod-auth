@@ -12,7 +12,13 @@
     "authUrl": "string"
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "appUser": {
+      "type": "hasMany",
+      "model": "AuthAppUser",
+      "foreignKey": "appId"
+    }
+  },
   "acls": [
     {
       "accessType": "*",

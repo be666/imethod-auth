@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
+    "build": "npm install",
     "dev": "cross-env NODE_ENV=dev pm2-dev ecosystem.dev.json",
     "start": "npm install;pm2 startOrRestart ecosystem.json --env bcaring",
     "pretest": "eslint .",
