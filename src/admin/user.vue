@@ -4,10 +4,10 @@
       用户列表
     </div>
     <div class="i-btn-g">
-      <button
-        v-on:click="link('user-add')">
-        新增
-      </button>
+      <!--<button-->
+        <!--v-on:click="link('user-add')">-->
+        <!--新增-->
+      <!--</button>-->
     </div>
     <div class="i-panel-body">
       <i_table
@@ -73,10 +73,10 @@
       $this.$refs.table.pk = 'id';
       $this.$refs.table.checkbox = [];
       $this.$refs.table.titleList = [{
-        id: "loginName",
+        id: "username",
         text: "登录名"
       }, {
-        id: "realName",
+        id: "realm",
         text: "真实姓名"
       }, {
         id: "sex",
@@ -89,25 +89,8 @@
           }
         }
       }, {
-        id: "birthday",
-        text: "出生日期"
-      }, {
         id: "email",
         text: "邮箱"
-      }, {
-        id: "telephone",
-        text: "电话"
-      }];
-      $this.$refs.table.optionList = [{
-        className: 'i-btn-sm',
-        id: "state",
-        render: function (el, index) {
-          if (el.state == 1) {
-            return "启用";
-          } else {
-            return "禁用";
-          }
-        }
       }];
     }
   }

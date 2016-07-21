@@ -14,6 +14,9 @@
               <li>
                 <a href='/console'>控制台</a>
               </li>
+              <li>
+                <a v-on:click="loginOut">注销</a>
+              </li>
             </ul>
           </nav>
         </div>
@@ -27,6 +30,12 @@
     data () {
       return {}
     },
-    methods: {}
+    methods: {
+      loginOut(){
+        this.$http.post(this.$tools.resolveUrl(`/AuthUsers/logout`),function (err) {
+          window.location.reload();
+        })
+      }
+    }
   }
 </script>

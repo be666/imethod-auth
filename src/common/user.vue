@@ -1,9 +1,9 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
   <div>
-    <i_table
+    <i_table_server
       v-on:table-click="optionInfo"
       v-ref:table
-    ></i_table>
+    ></i_table_server>
   </div>
 </template>
 <script type="text/javascript">
@@ -36,7 +36,6 @@
     },
     compiled(){
       var $this = this;
-      $this.$refs.table.pk = 'id';
       $this.$refs.table.checkbox = [];
       $this.$refs.table.titleList = [{
         id: "loginName",

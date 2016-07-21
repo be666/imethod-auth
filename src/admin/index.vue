@@ -9,31 +9,25 @@
           用户数:{{userCount}} <a class="" v-on:click="link('user-add')">新增</a><br>
           应用数:{{appCount}} <a class="" v-on:click="link('app-add')">新增</a><br>
         </div>
-
       </div>
     </div>
-    <div class="i-panel-body">
-      <div class="i-row">
-        <div class="i-col-12">
-          应用:{{authApp.appName}}
-          <span class="" v-if="authApp.allowAll">开放访问</span>
-          <span class="" v-if="authApp.allowSign">开放注册</span>
+    <template v-for="authApp in authApps">
+      <div class="i-panel-body">
+        <div class="i-row">
+          <div class="i-col-12">
+            应用:{{authApp.realm}}
+            <span class="" v-if="authApp.anonymousAllowed">开放访问</span>
+          </div>
+        </div>
+        <div class="i-col">
+          <div class="i-col-12">
+            用户数:{{authApp.appUser.length}}
+            <a class=""
+               v-on:click="link('app-user',{appId:authApp.id})">用户管理</a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="i-panel-body">
-      用户数:{{authApp.appUser.length}}
-      <a class=""
-         v-on:click="link('app-user',{appId:authApp.id})">用户管理</a>
-      <br>
-      用户分组:
-      <a class="" v-on:click="link('app-group',{appId:authApp.id})">分组管理</a>
-      <br>
-      <template v-for="aGroup in authApp.appGroup">
-        {{aGroup.groupName}}:({{aGroup.groupUser.length}}人)
-        <br>
-      </template>
-    </div>
+    </template>
   </div>
 </template>
 <style lang='less'>
@@ -73,11 +67,7 @@
           where: {
             state: 1
           },
-          include: [{
-            relation: 'appUser'
-          }, {
-            'appGroup': 'groupUser'
-          }]
+          include: "appUser"
         }
       }, function (res, ste, req) {
         $this.authApps = res;

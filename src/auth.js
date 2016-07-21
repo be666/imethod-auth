@@ -1,8 +1,8 @@
 let valid = (app, success, error) => {
   if (!getUserInfo()) {
-    app.$http.post(app.$tools.resolveUrl("/AuthAppUsers/info"), function (data, status, request) {
-      if (data.userInfo) {
-        setUserInfo(data.userInfo);
+    app.$http.post(app.$tools.resolveUrl("/AuthUsers/me"), function (data, status, request) {
+      if (data) {
+        setUserInfo(data);
         success()
       } else {
         setUserInfo(null);

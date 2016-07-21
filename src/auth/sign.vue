@@ -1,5 +1,4 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
-  <i_header></i_header>
   <section>
     <div class='i-row i-scope i-al-c'>
       <div class='i-col-6'>
@@ -12,7 +11,7 @@
           <input name="utf8" type="hidden" value="✓">
           <div class='i-row'>
             <label class="i-col-4">登陆名</label>
-            <input class="i-col-8" type="text" v-model="userInfo.loginName" id="loginName" required
+            <input class="i-col-8" type="text" v-model="userInfo.username" id="loginName" required
                    placeholder="">
           </div>
           <div class='i-row'>
@@ -25,37 +24,9 @@
           </div>
           <div class='i-row'>
             <label class="i-col-4">用户名</label>
-            <input class="i-col-8" type="text" class="am-radius" v-model="userInfo.userName"
+            <input class="i-col-8" type="text" class="am-radius" v-model="userInfo.realm"
                    id="userName"
                    required placeholder="">
-          </div>
-          <div class='i-row'>
-            <label class="i-col-4">真实姓名</label>
-            <input class="i-col-8" type="text" v-model="userInfo.realName" id="realName" required
-                   placeholder="">
-          </div>
-          <div class='i-row'>
-            <label class="i-col-4">电话</label>
-            <input class="i-col-8" type="text" v-model="userInfo.telephone" id="telephone" required
-                   placeholder="">
-          </div>
-          <div class='i-row'>
-            <label class="i-col-4">出生日期</label>
-            <input class="i-col-8" type="date" v-model="userInfo.birthday" id="birthday" required
-                   placeholder="">
-          </div>
-          <div class='i-row'>
-            <label class="i-col-4">联系地址</label>
-            <input class="i-col-8" type="text" v-model="userInfo.address" id="address" required placeholder="">
-          </div>
-          <div class='i-row'>
-            <label>性别</label>
-            <i_radio
-              v-bind:item-list="sexList"
-              v-bind:choose.sync="userInfo.sex"
-              sid="sid"
-              text="name"
-            ></i_radio>
           </div>
           <div class='i-row'>
             <label class="i-col-4" for="user_passWord">密码</label>
@@ -71,8 +42,9 @@
                    id="user_passWord_confirmation">
           </div>
           <div class='i-row i-al-c'>
-            <input class="i-col-8" type="submit" name="commit" value="注册帐号"
-            >
+            <button class="i-col-8" type="submit" name="commit"
+            >注册帐号
+            </button>
           </div>
         </form>
       </div>
@@ -80,10 +52,6 @@
   </section>
 </template>
 <style lang='less'>
-  .auth-keep {
-
-  }
-
   .i-radio {
     display: inline-block;
     margin: 0 10px 0 10px;
@@ -101,7 +69,7 @@
           name: '女'
         }],
         userInfo: this.userInfo || {},
-        app_token: null,
+        appId: null,
         url: null
       }
     },
@@ -116,8 +84,7 @@
         s = s.split("=");
         query[s[0]] = decodeURIComponent(s[1]);
       }
-      this.app_token = query.app_token || '';
-      this.url = query.url || '';
+      this.appId = query.appId || null
     },
     components: {
       'i_header': require("./header.vue")
@@ -132,17 +99,12 @@
           this.$dialog.error('请确认密码输入是否正确!');
           return false;
         }
-        this.$http.post(this.$tools.resolveUrl("/AuthServers/sign"), {
-          "loginName": this.userInfo.loginName,
-          "realName": this.userInfo.realName,
-          "userName": this.userInfo.userName,
-          "passWord": this.userInfo.passWord,
-          "telephone": this.userInfo.telephone,
-          "birthday": this.userInfo.birthday,
-          "address": this.userInfo.address,
+        this.$http.post(this.$tools.resolveUrl("/AuthUsers"), {
+          "realm": this.userInfo.realm,
+          "username": this.userInfo.username,
+          "password": this.userInfo.passWord,
           "email": this.userInfo.email,
-          "sex": this.userInfo.sex,
-          "app_token": this.app_token
+          "appId": this.appId
         }, function (data, status, request) {
           if (data.siteUrl) {
             window.location.href = $this.$tools.resolveHost($this.siteUrl) + '/login?app_token=' + encodeURIComponent(this.app_token) + '&url=' + encodeURIComponent(data.siteUrl);

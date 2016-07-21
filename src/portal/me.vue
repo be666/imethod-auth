@@ -10,15 +10,15 @@
         <fieldset>
           <legend>用户信息</legend>
           <div class="i-row">
-            <label class="i-col-3">登陆名</label>
+            <label class="i-col-3">登录名</label>
             <div class="i-col-9">
-              <input type="text" v-model="userInfo.loginName" readonly placeholder="">
+              <input type="text" v-model="userInfo.username" required placeholder="">
             </div>
           </div>
           <div class="i-row">
             <label class="i-col-3">用户名</label>
             <div class="i-col-9">
-              <input type="text" v-model="userInfo.userName" required placeholder="">
+              <input type="text" v-model="userInfo.realm" required placeholder="">
             </div>
           </div>
           <div class="i-row">
@@ -28,28 +28,20 @@
             </div>
           </div>
           <div class="i-row">
-            <label class="i-col-3">电话</label>
-            <div class="i-col-9">
-              <input type="text" v-model="userInfo.telephone" required placeholder="">
-            </div>
-          </div>
-          <div class="i-row">
             <label class="i-col-3">密码</label>
             <div class="i-col-9">
               <input type="password" v-model="userInfo.password" required placeholder="">
             </div>
           </div>
           <div class="i-row">
-            <label class="i-col=3">确认密码</label>
+            <label class="i-col-3">确认密码</label>
             <div class="i-col-9">
               <input type="password" v-model="userInfo.password2" required placeholder="">
             </div>
           </div>
-          <div class="i-row">
-            <div class="i-btn-g">
-              <button type="submit">提交</button>
-              <button type="reset">取消&返回</button>
-            </div>
+          <div class="i-row i-btn-g i-al-c">
+            <button type="submit">提交</button>
+            <button type="reset">取消&返回</button>
           </div>
         </fieldset>
       </form>
@@ -67,7 +59,8 @@
           sid: '1',
           name: '女'
         }],
-        userInfo: {}
+        userInfo: this.$auth.getUserInfo(),
+        userId: this.$auth.getUserInfo().id
       }
     },
     methods: {
@@ -82,12 +75,11 @@
           this.$dialog.error('请确认正确的密码格式!');
           return false;
         }
-        this.$http.post(this.$tools.resolveUrl("/AuthUsers/modify"), {
-          id: this.userInfo.id,
-          userName: this.userInfo.userName,
+        this.$http.put(this.$tools.resolveUrl(`/AuthUsers/${this.userId}`), {
+          realm: this.userInfo.realm,
+          username: this.userInfo.username,
           email: this.userInfo.email,
-          telephone: this.userInfo.telephone,
-          passWord: this.userInfo.password
+          password: this.userInfo.password
         }, function (res, ste, req) {
           window.location.reload();
         }).error(function (err) {
@@ -96,13 +88,7 @@
       }
     },
     attached () {
-      this.$http.get(this.$tools.resolveUrl("/AuthUsers/"), {
-        filter: {
-          where: {
-            id: (this.$auth.getUserInfo() || {}).userId
-          }
-        }
-      }, function (res, ste, req) {
+      this.$http.get(this.$tools.resolveUrl(`/AuthUsers/${this.userId}`), {}, function (res, ste, req) {
         if (res.length > 0) {
           this.userInfo = res[0];
         }

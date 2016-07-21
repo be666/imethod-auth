@@ -1,5 +1,4 @@
 <template xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
-  <i_header></i_header>
   <section>
     <div class='i-row i-scope i-al-c'>
       <div class='i-col-6'>
@@ -42,9 +41,7 @@
         appId: null
       }
     },
-    components: {
-      'i_header': require("./header.vue")
-    },
+    components: {},
     created () {
       let search = window.location.search;
       while (search.startsWith("?")) {
@@ -71,14 +68,13 @@
         this.$http.post(this.$tools.resolveUrl("/AuthAppUsers/authLogin"), query, function (data, status, request) {
           let tokenInfo = data.tokenInfo;
           let callbackUrls = data.callbackUrls;
-          console.log(callbackUrls);
           window.location.href = callbackUrls + "?access_token=" + tokenInfo;
         }).error(function (data, status, request) {
           $this.$dialog.error(data.error.message);
         })
       },
       sign(){
-        window.location.href = this.$tools.resolveHost(this.$config.siteUrl) + '/sign?app_token=' + encodeURIComponent(this.app_token) + '&url=' + encodeURIComponent(this.url);
+        window.location.href = this.$tools.resolveHost(this.$config.siteUrl) + '/sign?appId=' + encodeURIComponent(this.appId);
       }
     },
     attached () {

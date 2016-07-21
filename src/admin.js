@@ -47,19 +47,7 @@ router.map({
           "app/:appId/user": {
             name: "app-user",
             component: require("./admin/app-user.vue")
-          },
-          "app/:appId/group": {
-            name: "app-group",
-            component: require("./admin/app-group.vue")
-          },
-          "app/:appId/group/insert": {
-            name: "app-group-add",
-            component: require("./admin/app-group-insert.vue")
-          },
-          "app/:appId/group/:groupId/user": {
-            name: "app-group-user",
-            component: require("./admin/app-group-user.vue")
-          },
+          }
         }
       }
     },
