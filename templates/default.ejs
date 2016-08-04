@@ -20,6 +20,13 @@
 </head>
 <body class="i-<%= htmlWebpackPlugin.options.moduleClass %>-<%= htmlWebpackPlugin.options.enterClass %>">
 <router-view></router-view>
+<script>
+  window.onerror=function (msg, url, line) {
+    alert(msg)
+    alert(url)
+    alert(line)
+  }
+</script>
 <!-- built files will be auto injected -->
 </body>
 </html>
