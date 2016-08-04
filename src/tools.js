@@ -3,6 +3,38 @@
  */
 let {apiUrl} = require("./config.js");
 
+
+String.prototype.startsWith = String.prototype.startsWith || function (str) {
+    return !(str == null || str == "" || this.length == 0 || str.length > this.length) &&
+      (this.substr(0, str.length) == str);
+  };
+String.prototype.endsWith = String.prototype.endsWith || function (str) {
+    return !(str == null || str == "" || this.length == 0 || str.length > this.length) &&
+      (this.substring(this.length - str.length) == str);
+  };
+Array.prototype.find = Array.prototype.find || function (fn, thisArg) {
+    if (typeof  fn != "function") {
+      throw new TypeError("fn不是一个有效的函数");
+    }
+    var arr = this;
+    for (var i = 0, length = arr.length; i < length; i++) {
+      if (fn.call(thisArg, arr[i], i, arr)) {
+        return arr[i];
+      }
+    }
+  };
+Array.prototype.findIndex = Array.prototype.findIndex || function (fn, thisArg) {
+    if (typeof  fn != "function") {
+      throw new TypeError("fn不是一个有效的函数");
+    }
+    var arr = this;
+    for (var i = 0, length = arr.length; i < length; i++) {
+      if (fn.call(thisArg, arr[i], i, arr)) {
+        return i;
+      }
+    }
+    return -1;
+  };
 let isNotEmptyStr = function (str) {
   return (typeof str == 'string' && str.length > 0);
 };
@@ -114,9 +146,9 @@ let resolveHost = function (host) {
 };
 
 export {
-  isNotEmptyStr,isNotObj,
-  getDateTimeStr,getCurrentDateTimeStr,getDateStr,
+  isNotEmptyStr, isNotObj,
+  getDateTimeStr, getCurrentDateTimeStr, getDateStr,
   inArray,
-  resolveUrl,loadCode,buildMap,
+  resolveUrl, loadCode, buildMap,
   resolveHost
 }
